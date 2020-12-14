@@ -1,13 +1,32 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux'
+import { createStore } from 'redux';
+import { BrowserRouter } from 'react-router-dom'
+
+import actionCable from 'actioncable'
+
+let store = createStore(
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
+
+const CableApp = {}
+CableApp.cable = actionCable.createConsumer('ws://localhost:3000/cable') 
+export const ActionCableContext = createContext()
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <ActionCableContext.Provider value={CableApp.cable}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ActionCableContext.Provider>
+    </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 );
 
