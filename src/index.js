@@ -20,7 +20,7 @@ const CableApp = {}
 
 CableApp.cable = actionCable.createConsumer('ws://localhost:3000/cable') 
 
-console.log({CableApp})
+// console.log({CableApp})
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
