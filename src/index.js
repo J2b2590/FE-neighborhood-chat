@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -6,25 +6,29 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux';
 import { BrowserRouter } from 'react-router-dom'
-
+import rootReducer from './reducers';
+// import createConsumer from '@rails/actioncable'
 import actionCable from 'actioncable'
 
+
 let store = createStore(
+  rootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 
 const CableApp = {}
-CableApp.cable = actionCable.createConsumer('ws://localhost:3000/cable') 
-export const ActionCableContext = createContext()
 
+CableApp.cable = actionCable.createConsumer('ws://localhost:3000/cable') 
+
+console.log({CableApp})
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
-      <ActionCableContext.Provider value={CableApp.cable}>
+      
         <BrowserRouter>
-          <App />
+          <App cableApp={CableApp} />
         </BrowserRouter>
-      </ActionCableContext.Provider>
+      
     </React.StrictMode>
   </Provider>,
   document.getElementById('root')
