@@ -24,7 +24,8 @@ class Login extends Component {
         .then(resp => resp.json())
         .then(user => {
           this.props.login(user)
-          this.props.history.push('/room')
+          
+          this.props.history.push('/rooms')
         })
         this.setState({
           username: "",

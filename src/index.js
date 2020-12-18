@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'semantic-ui-css/semantic.min.css';
+
+
 import { Provider } from 'react-redux'
 import { createStore } from 'redux';
 import { BrowserRouter } from 'react-router-dom'
@@ -23,13 +26,9 @@ CableApp.cable = actionCable.createConsumer('ws://localhost:3000/cable')
 // console.log({CableApp})
 ReactDOM.render(
   <Provider store={store}>
-    <React.StrictMode>
-      
         <BrowserRouter>
           <App cableApp={CableApp} />
         </BrowserRouter>
-      
-    </React.StrictMode>
   </Provider>,
   document.getElementById('root')
 );

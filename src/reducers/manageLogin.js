@@ -1,12 +1,14 @@
 export default function manageLogin(state = {
     
 }, action) {
+
     switch (action.type) {
         case "LOGIN":
-            return action.user
+            return {...action.user}
 
         case "LOGOUT":
             return { }
+
         default:
           return state;
       }
