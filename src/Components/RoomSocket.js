@@ -12,7 +12,7 @@ class RoomWebSocket extends Component {
         }, 
         {
             received: (updatedRoom) => {
-                debugger
+                console.log("received data:", updatedRoom)
                 this.props.updateApp(updatedRoom)
             }
         })

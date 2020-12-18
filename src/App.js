@@ -1,78 +1,74 @@
-import React, { Component } from 'react';
-
-import logo from './logo.svg';
-import './App.css';
-import Login from './Components/Login'
-import RoomDashboard from './Containers/RoomDashboard'
-import Room from './Components/Room'
+import React, { Component } from "react";
+import "./App.css";
+import Login from "./Components/Login";
+import RoomDashboard from "./Containers/RoomDashboard";
+import Room from "./Components/Room";
 // import consumer from 'index.'
-import {currentRoom} from './actions/room'
-import { connect } from 'react-redux';
-import { Redirect, Route, Switch } from 'react-router-dom'
-
+import { currentRoom } from "./actions/room";
+import { connect } from "react-redux";
+import { Route, Switch } from "react-router-dom";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       currentUser: null,
       allRooms: [],
-      currentRoom: {}
-     }
+      currentRoom: {},
+    };
   }
 
   getRoomData = (id) => {
     fetch(`http://localhost:3000/rooms/${id}`)
-      .then(resp => resp.json())
-      .then(data => {
-        this.setState({ 
-          currentRoom: data });
-          // this.props.currentRoom(data)
-      })
-  }
+      .then((resp) => resp.json())
+      .then((data) => {
+        this.setState({
+          currentRoom: data,
+        });
+        console.log("mount", data.messages);
+        // this.props.currentRoom(data)
+      });
+  };
 
   updateAppStateRoom = (newRoom) => {
-   
-    this.setState({ 
-      currentRoom: {
-        room: newRoom.room.id,
-        users: newRoom.users,
-        messages: newRoom.messages
-      } });
-  }
-
-  addNewMessageToChat = (message) => {
+    console.log("updatedRoom:", newRoom);
     this.setState({
-      ...this.state,
-      currentRoom: {...this.state.currentRoom, messages : [...this.state.currentRoom.messages, message]}
-        });
-  }
+      currentRoom: {
+        ...this.state.currentRoom,
+        users: newRoom.users,
+        messages: newRoom.messages,
+      },
+    });
+  };
 
-
-  
-  render() { 
+  render() {
     // console.log(this.props.cableApp.cable.subscriptions)
-  
-    return ( 
+
+    return (
       <Switch>
-          <Route exact path='/' component={Login} />
-          <Route exact path='/rooms' component={RoomDashboard} />
-          <Route exact path='/rooms/:id' render={ (props) => {
-            return <Room
-              {...props}
-              messages={this.state.currentRoom.messages}
-              addNewMessageToChat={this.addNewMessageToChat}
-              allRooms={this.getAllRooms}
-              cableApp={this.props.cableApp}
-              getRoomData={this.getRoomData}
-              updateApp={this.updateAppStateRoom}
-              roomData={this.state.currentRoom}
-              currentUser={this.state.currentUser}
-            />
-            }} />  
-    </Switch>
-     );
+        <Route exact path="/" component={Login} />
+        <Route exact path="/rooms" component={RoomDashboard} />
+        <Route
+          exact
+          path="/rooms/:id"
+          render={(props) => {
+            return (
+              <Room
+                {...props}
+                messages={this.state.currentRoom.messages}
+                allRooms={this.getAllRooms}
+                cableApp={this.props.cableApp}
+                getRoomData={this.getRoomData}
+                updateApp={this.updateAppStateRoom}
+                roomData={this.state.currentRoom}
+                currentUser={this.state.currentUser}
+              />
+            );
+          }}
+        />
+      </Switch>
+    );
   }
 }
- 
-export default connect(null, {currentRoom})(App);
+
+export default connect(null, { currentRoom })(App);
