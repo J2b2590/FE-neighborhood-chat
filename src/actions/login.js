@@ -12,3 +12,10 @@ export const logOut = user => {
         user
     }
 }
+
+export const autoLogin = isLoggedIn => {
+    return{
+        type: 'CHECK_LOGIN',
+        isLoggedIn
+    }
+}

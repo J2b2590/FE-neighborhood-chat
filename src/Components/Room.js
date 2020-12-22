@@ -1,9 +1,11 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import RoomSocket from "./RoomSocket";
+import Emoji from "./Emoji"
 import { connect } from "react-redux";
 import { login } from "../actions/login";
 import { allRooms, currentRoom, currentUserInRoom } from "../actions/room";
 import { Button, Card, Form, Grid, Segment } from "semantic-ui-react";
+
 
 const API = "http://localhost:3000/messages";
 
@@ -15,9 +17,9 @@ class Room extends Component {
     };
   }
 
-  componentDidMount() {
-    console.log("component Mount");
-  }
+  
+ 
+
 
   handleMessageInput = (event) => {
     this.setState({
@@ -46,12 +48,12 @@ class Room extends Component {
       },
       body: JSON.stringify({ message: message }),
     })
-    //   .then((resp) => resp.json())
-    //   .then((result) => {
-    //       console.log("post result:", result)
-    //     // this.props.addNewMessageToChat(result);
-    //     // this.props.currentUserInRoom(result)
-    //   });
+      // .then((resp) => resp.json())
+      // .then((result) => {
+      //     console.log("post result:", result)
+      //   this.props.addNewMessageToChat(result);
+      //   this.props.currentUserInRoom(result)
+      // });
   };
 
   renderMessages = () => {
@@ -60,30 +62,44 @@ class Room extends Component {
         console.log("renderMessage:", message)
       return (
         <p key={index}>
-          {message.user.username} : {message.message.content}
+          <a class="ui blue ribbon label">{message.user.username}</a>
+           : {message.message.content}
         </p>
       );
     });
   };
 
+  
+
   render() {
+    //  console.log(this.props, "ROOM DATA")
     return (
       <div>
-        <h1>{this.props.popRooms}</h1>
+       
+        <h1 style={{margin: "5%",textAlign: "center", fontFamily: "Bublont Shadow", color: 'orange', fontSize: '7em'}}>
+          Welcome to {this.props.roomData.name} Chatroom</h1>
+          
+        <div>
+            <Button onClick={()=> this.props.history.push('/rooms')}>BACK</Button>
+        </div>
 
-        <Grid style={{ margin: "10%", border: "red" }}>
+  
+        
+        <Grid centered style={{verticalAlign:"bottom", margin: "3%", border: "red" }}>
           <Segment style={{ overflow: "auto", maxHeight: 200 }}>
             <Grid.Column>
               <Card.Group>
                 <Card>
                   <Card.Content>
-                    <Card.Header>Placeholder</Card.Header>
+                    <Card.Header>Whats fun to do</Card.Header>
                     <Card.Description>
+                        
                       <strong>
                         {this.props.messages
                           ? this.renderMessages()
                           : null}
                       </strong>
+
                     </Card.Description>
                   </Card.Content>
                 </Card>
@@ -91,7 +107,8 @@ class Room extends Component {
             </Grid.Column>
           </Segment>
         </Grid>
-        <div centered style={{ margin: "auto", textAlign: "center" }}>
+        
+        <div centered style={{ margin: "5%", textAlign: "center" }}>
           <form id="chat-form" onSubmit={this.submitMessage}>
             <h3>Post a new message:</h3>
             <textarea
@@ -101,9 +118,11 @@ class Room extends Component {
             ></textarea>
             <br></br>
             <input type="submit"></input>
+            
           </form>
         </div>
-
+          
+          
         <RoomSocket
           cableApp={this.props.cableApp}
           updateApp={this.props.updateApp}

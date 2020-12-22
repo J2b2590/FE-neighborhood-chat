@@ -26,3 +26,12 @@ export const currentUserInRoom = currentUser => {
     }
 }
 
+
+export const addFavorite = favoriteRoom => {
+    
+    return{ 
+        type: "ADD_FAVORITE",
+        favoriteRoom
+    }
+}
+

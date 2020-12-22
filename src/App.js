@@ -3,10 +3,17 @@ import "./App.css";
 import Login from "./Components/Login";
 import RoomDashboard from "./Containers/RoomDashboard";
 import Room from "./Components/Room";
+import Navbar from './Components/Navbar'
+import FavoriteRooms from "./Components/FavoriteRooms";
 // import consumer from 'index.'
 import { currentRoom } from "./actions/room";
+import { autoLogin } from "./actions/login";
 import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
+import UserProfile from "./Components/UserProfile";
+
+
+
 
 class App extends Component {
   constructor(props) {
@@ -16,6 +23,22 @@ class App extends Component {
       allRooms: [],
       currentRoom: {},
     };
+  }
+
+  componentDidMount(){
+    const token = localStorage.getItem("token")
+    if(token){
+      fetch(`http://localhost:3000/auto_login`,{
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      .then(resp => resp.json())
+      .then(data => {
+        this.props.autoLogin(data)
+        console.log(data, "FETCH TOKEN")
+      })
+    }
   }
 
   getRoomData = (id) => {
@@ -45,15 +68,21 @@ class App extends Component {
     // console.log(this.props.cableApp.cable.subscriptions)
 
     return (
-      <Switch>
+      <div>
+      <Navbar />
+      <Switch>  
         <Route exact path="/" component={Login} />
         <Route exact path="/rooms" component={RoomDashboard} />
+        <Route exact path="/profile" component={UserProfile} />
+        <Route exact path="/favorites" component={FavoriteRooms}/>
         <Route
           exact
           path="/rooms/:id"
           render={(props) => {
             return (
+            
               <Room
+              
                 {...props}
                 messages={this.state.currentRoom.messages}
                 allRooms={this.getAllRooms}
@@ -67,8 +96,9 @@ class App extends Component {
           }}
         />
       </Switch>
+      </div>
     );
   }
 }
 
-export default connect(null, { currentRoom })(App);
+export default connect(null, { currentRoom, autoLogin })(App);

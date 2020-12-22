@@ -9,6 +9,9 @@ export default function manageLogin(state = {
         case "LOGOUT":
             return { }
 
+        case "CHECK_LOGIN":
+            return {...action.isLoggedIn}
+
         default:
           return state;
       }

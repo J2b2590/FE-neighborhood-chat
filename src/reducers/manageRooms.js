@@ -17,8 +17,11 @@ export default function manageRooms(state = [] , action) {
                 return currentRoom
 
         case "CURRENT_USER":
-            debugger
             return [action.currentUser]
+
+        case "ADD_FAVORITE":
+            console.log("add Fav")
+            return [...state, action.favoriteRoom]
 
         // case "LOGIN":
         //     return action.user.notes
