@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { popRooms, addFavorite } from '../actions/room'
-
-import { Container, Card, Button, Grid, Segment,Rating} from 'semantic-ui-react'
+import FavoriteRooms from '../Components/FavoriteRooms'
+import { popRooms, addFavorite, checkLogin } from '../actions/room'
+import {Header,Column, Container, Card, Button, Grid, Segment,Rating} from 'semantic-ui-react'
 
 const RatingExampleRating = () => <Rating />
-
-
+const API = 'http://localhost:3000//favorites'
 
 class RoomDashboard extends Component {
     constructor(props) {
         super(props)
         this.state = {
-          allRooms: [],         
+          allRooms: []        
       }
     }
 
@@ -23,18 +22,56 @@ class RoomDashboard extends Component {
                   this.setState({ 
                     allRooms: resp });
                 this.props.popRooms(resp)
+                
                 })
     }
 
+    sendFavorite = (roomId) => {
+        const data = {
+            user_id: this.props.login.id,
+            room_id: roomId
+        }
+        const reqObj = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(data)
+        }
+        fetch(API, reqObj)
+        .then(resp => resp.json())
+        .then(data => {
+            console.log(data)
+            this.props.addFavorite(data)
+    })
+}
+
     
-    render(){    
+    render(){   
+        // console.log(this.props.checkLogin,"check login")
+        // console.log(this.props.login, "Login") 
+    
     return(
-<div>
-           
-                <Grid centered style={{margin: '5%'}}>
-                <Segment style={{borderColor: "aliceblue",
-                        overflow: 'auto', maxHeight: '90vh' }}>   
-                        <Grid.Column>
+
+
+<Grid divided="vertically">
+<Grid.Row columns={2}>
+      <Grid.Column>
+          <h2>side</h2>
+      </Grid.Column>
+      <Grid.Column>
+          <h2>side</h2>
+      </Grid.Column>
+    </Grid.Row>
+    
+    <Grid.Row columns={2}>
+  <Grid.Column left floated only='computer' computer={5}>
+    <div>
+        <FavoriteRooms  history= {this.props.history} />
+    </div>
+  </Grid.Column>
+                <Grid.Column right floated mobile={16} tablet={8} computer={5}>
                             <h1 style={{ margin:'auto',marginTop: "10%", textAlign:'center', fontFamily: "Bublont Shadow", color: 'orange', fontSize: '5em'}}>
                                 Welcome to the Neighborhood {this.props.login.username}</h1>
                             {
@@ -42,7 +79,7 @@ class RoomDashboard extends Component {
                                               
                                 return <div  key={room.id}>
                                             
-                                            <Rating onClick={()=> this.props.addFavorite(`${room.name}`)} maxRating={1} defaultRating={1} icon='star' size='large' /> 
+                                            <Rating onClick={()=> this.sendFavorite(room.id)} maxRating={1} defaultRating={1} icon='star' size='large' /> 
                                             <h3 style={{padding: "5px",margin:'auto',marginTop: "5%", textAlign:'center', fontFamily: "Bublont outline", fontSize: "3em"}} 
                                             
                                             onClick={()=> {                                          
@@ -52,10 +89,13 @@ class RoomDashboard extends Component {
                                 })
                             } 
                         </Grid.Column>
-                    </Segment>
-                </Grid>
+                        </Grid.Row>
+</Grid>
+
+                
             
-</div>
+                
+
     )
 }
 }
@@ -64,7 +104,6 @@ const mapStateToProps = (state) => {
 return{
     login: state.user,
     rooms: state.rooms,
-    
     }
 }
  

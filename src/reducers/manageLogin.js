@@ -4,7 +4,7 @@ export default function manageLogin(state = {
 
     switch (action.type) {
         case "LOGIN":
-            return {...action.user}
+            return {...action.user.user}
 
         case "LOGOUT":
             return { }

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'; 
-import { addFavorite, popRooms } from '../actions/room';
+
+
+
 
 class FavoriteRooms extends Component {
     constructor(props) {
@@ -9,30 +11,34 @@ class FavoriteRooms extends Component {
             title: ''
          }
     }
-      
+
+          
     render() { 
-        console.log(this.props, "favs")
-        debugger
+        console.log(this.props.room)
         return ( 
-            <div>
-                <h1>Favs rooms</h1>
+            <div style={{backgroundColor: "light blue"}}>
+                    <h1>Your Favorite Room</h1>
                 {
-                // this.props.addFavorite.map(room =>{
-                //     debugger
-                //     console.log(room)
-                // })
-                }
+                    this.props.favs.map(fav => {
+                    return<div> 
+                            <h3
+                            onClick={()=> {                                          
+                                this.props.history.push(`/rooms/${fav.id}`)
+                                }}
+                            >{fav.name}</h3>
+                        </div>
+                    })
+                }  
             </div>
          );
     }
 }
 
-const mapStateToProps = state => {
-    
+const mapStateToProps = (state) => {
     return{
-        addFavorite: state.addFavorite,
-        popRooms: state.popRooms
+        favs: state.favs,
+        room: state.room
     }
 }
  
-export default connect(mapStateToProps, { addFavorite })(FavoriteRooms);
+export default connect(mapStateToProps, null)(FavoriteRooms);

@@ -2,7 +2,7 @@ import React from 'react';
 import {logOut} from '../actions/login'
 import { connect } from 'react-redux'
 
-import { Button, Menu } from 'semantic-ui-react'
+import { Button, Menu, Dropdown } from 'semantic-ui-react'
 
 
 import { Link } from 'react-router-dom'
@@ -12,9 +12,9 @@ class Navbar extends React.Component {
   render() {
     return (
         <Menu>
-
-            <Link to='/favorites'>
+            <Link >
                 <Menu.Item>
+                    {/* drop down on favorites, map favorites and link to chatroom id */}
                     <Button basic>Favorites</Button>
                 </Menu.Item>
             </Link>

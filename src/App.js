@@ -4,7 +4,7 @@ import Login from "./Components/Login";
 import RoomDashboard from "./Containers/RoomDashboard";
 import Room from "./Components/Room";
 import Navbar from './Components/Navbar'
-import FavoriteRooms from "./Components/FavoriteRooms";
+// import FavoriteRooms from "./Components/FavoriteRooms";
 // import consumer from 'index.'
 import { currentRoom } from "./actions/room";
 import { autoLogin } from "./actions/login";
@@ -74,7 +74,7 @@ class App extends Component {
         <Route exact path="/" component={Login} />
         <Route exact path="/rooms" component={RoomDashboard} />
         <Route exact path="/profile" component={UserProfile} />
-        <Route exact path="/favorites" component={FavoriteRooms}/>
+        {/* <Route exact path="/favorites" component={FavoriteRooms}/> */}
         <Route
           exact
           path="/rooms/:id"

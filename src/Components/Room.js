@@ -1,5 +1,6 @@
-import React, { Component, useState } from "react";
+import React, { Component,} from "react";
 import RoomSocket from "./RoomSocket";
+
 import Emoji from "./Emoji"
 import { connect } from "react-redux";
 import { login } from "../actions/login";
@@ -48,12 +49,6 @@ class Room extends Component {
       },
       body: JSON.stringify({ message: message }),
     })
-      // .then((resp) => resp.json())
-      // .then((result) => {
-      //     console.log("post result:", result)
-      //   this.props.addNewMessageToChat(result);
-      //   this.props.currentUserInRoom(result)
-      // });
   };
 
   renderMessages = () => {
@@ -73,9 +68,10 @@ class Room extends Component {
 
   render() {
     //  console.log(this.props, "ROOM DATA")
+    
     return (
       <div>
-       
+        
         <h1 style={{margin: "5%",textAlign: "center", fontFamily: "Bublont Shadow", color: 'orange', fontSize: '7em'}}>
           Welcome to {this.props.roomData.name} Chatroom</h1>
           
@@ -83,8 +79,8 @@ class Room extends Component {
             <Button onClick={()=> this.props.history.push('/rooms')}>BACK</Button>
         </div>
 
-  
         
+      
         <Grid centered style={{verticalAlign:"bottom", margin: "3%", border: "red" }}>
           <Segment style={{ overflow: "auto", maxHeight: 200 }}>
             <Grid.Column>
@@ -117,8 +113,7 @@ class Room extends Component {
               onChange={this.handleMessageInput}
             ></textarea>
             <br></br>
-            <input type="submit"></input>
-            
+            <input type="submit"></input>  
           </form>
         </div>
           
