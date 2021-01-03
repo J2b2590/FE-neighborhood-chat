@@ -55,24 +55,15 @@ class RoomDashboard extends Component {
     return(
 
 
-<Grid divided="vertically">
-<Grid.Row columns={2}>
-      <Grid.Column>
-          <h2>side</h2>
-      </Grid.Column>
-      <Grid.Column>
-          <h2>side</h2>
-      </Grid.Column>
-    </Grid.Row>
-    
+<Grid divided="vertically">    
     <Grid.Row columns={2}>
-  <Grid.Column left floated only='computer' computer={5}>
+  <Grid.Column >
     <div>
         <FavoriteRooms  history= {this.props.history} />
     </div>
   </Grid.Column>
-                <Grid.Column right floated mobile={16} tablet={8} computer={5}>
-                            <h1 style={{ margin:'auto',marginTop: "10%", textAlign:'center', fontFamily: "Bublont Shadow", color: 'orange', fontSize: '5em'}}>
+                <Grid.Column >
+                            <h1 style={{ margin:'auto',marginTop: "10%", textAlign:'center', fontFamily: "Bublont Shadow", color: 'orange', fontSize: '4em'}}>
                                 Welcome to the Neighborhood {this.props.login.username}</h1>
                             {
                                 this.state.allRooms.map(room=>{   

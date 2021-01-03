@@ -12,6 +12,15 @@ class FavoriteRooms extends Component {
          }
     }
 
+    componentDidMount(){
+        fetch(`http://localhost:3000/favorites`)
+                .then(resp => resp.json())
+                .then(resp => {
+                  console.log(resp)
+                
+                })
+    }
+
           
     render() { 
         console.log(this.props.room)
@@ -20,7 +29,7 @@ class FavoriteRooms extends Component {
                     <h1>Your Favorite Room</h1>
                 {
                     this.props.favs.map(fav => {
-                    return<div> 
+                    return<div key={fav.id}> 
                             <h3
                             onClick={()=> {                                          
                                 this.props.history.push(`/rooms/${fav.id}`)

@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import "./App.css";
-import Login from "./Components/Login";
+import Login from "./Components/Login/Login";
 import RoomDashboard from "./Containers/RoomDashboard";
 import Room from "./Components/Room";
 import Navbar from './Components/Navbar'
 // import FavoriteRooms from "./Components/FavoriteRooms";
 // import consumer from 'index.'
 import { currentRoom } from "./actions/room";
-import { autoLogin } from "./actions/login";
+import { autoLogin, logOut} from "./actions/login";
 import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import UserProfile from "./Components/UserProfile";
@@ -41,6 +41,12 @@ class App extends Component {
     }
   }
 
+  clear(){
+    window.localStorage.removeItem('user');
+    window.localStorage.removeItem('token');
+    this.logOut();
+}
+
   getRoomData = (id) => {
     fetch(`http://localhost:3000/rooms/${id}`)
       .then((resp) => resp.json())
@@ -64,12 +70,15 @@ class App extends Component {
     });
   };
 
+ 
+
   render() {
     // console.log(this.props.cableApp.cable.subscriptions)
 
     return (
       <div>
-      <Navbar />
+        
+      <Navbar clear={this.clear} />
       <Switch>  
         <Route exact path="/" component={Login} />
         <Route exact path="/rooms" component={RoomDashboard} />
@@ -101,4 +110,4 @@ class App extends Component {
   }
 }
 
-export default connect(null, { currentRoom, autoLogin })(App);
+export default connect(null, { currentRoom, autoLogin, logOut})(App);

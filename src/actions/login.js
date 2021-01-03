@@ -7,7 +7,6 @@ export const login = user => {
 }
 
 export const logOut = user => {
-    // window.localStorage.removeItem("token")
     return{
         type: 'LOGOUT',
         user
@@ -15,7 +14,6 @@ export const logOut = user => {
 }
 
 export const autoLogin = isLoggedIn => {
-
     return{
         type: 'CHECK_LOGIN',
         isLoggedIn

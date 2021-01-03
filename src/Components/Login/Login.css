@@ -1,0 +1,41 @@
+#loginApp{
+
+    background-color:  rgba(253, 229, 120, 0.924)
+    
+    
+}
+
+.logo{
+    animation-duration: 2s;
+    animation-name: slideinleft;
+}
+
+.header{
+    animation-duration: 3s;
+    animation-name: slideinright;
+}
+
+@keyframes slideinright {
+    from {
+      margin-left: -100%;
+      width: 300%;
+    }
+  
+    to {
+      margin-right: 0%;
+      width: 100%;
+    }
+  }
+
+
+@keyframes slideinleft {
+    from {
+      margin-left: 100%;
+      width: 300%;
+    }
+  
+    to {
+      margin-left: 0%;
+      width: 100%;
+    }
+  }

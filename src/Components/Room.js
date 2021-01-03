@@ -1,7 +1,5 @@
 import React, { Component,} from "react";
 import RoomSocket from "./RoomSocket";
-
-import Emoji from "./Emoji"
 import { connect } from "react-redux";
 import { login } from "../actions/login";
 import { allRooms, currentRoom, currentUserInRoom } from "../actions/room";
@@ -17,10 +15,6 @@ class Room extends Component {
       newMessage: "",
     };
   }
-
-  
- 
-
 
   handleMessageInput = (event) => {
     this.setState({
@@ -63,8 +57,6 @@ class Room extends Component {
       );
     });
   };
-
-  
 
   render() {
     //  console.log(this.props, "ROOM DATA")

@@ -12,9 +12,9 @@ class Navbar extends React.Component {
   render() {
     return (
         <Menu>
-            <Link >
+            {/* <Link >
                 <Menu.Item>
-                    {/* drop down on favorites, map favorites and link to chatroom id */}
+                    
                     <Button basic>Favorites</Button>
                 </Menu.Item>
             </Link>
@@ -23,11 +23,11 @@ class Navbar extends React.Component {
                 <Menu.Item>
                     <Button basic>Make A Room</Button>
                 </Menu.Item>
-            </Link>
+            </Link> */}
             
             <Link className="right Menu.item" to='/'>
                 <Menu.Item>   
-                    <Button onClick={this.props.logOut} basic black>Sign Out</Button>
+                    <Button onClick={this.props.clear()} basic black>Sign Out</Button>
                 </Menu.Item>
             </Link> 
 
