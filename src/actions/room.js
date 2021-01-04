@@ -35,9 +35,22 @@ export const addFavorite = favoriteRoom => {
 }
 
 export const deleteFavorite = id =>{
+    
     return{
+        
         type: "DELETE_FAVORITE",
         id: id.room.id
     }
 }
 
+export const updateFavortes = updateFavorites =>{
+    return{
+
+        type: "UPDATE_FAVORITE",
+        updateFavorites
+    }
+}
+
+
+
+  

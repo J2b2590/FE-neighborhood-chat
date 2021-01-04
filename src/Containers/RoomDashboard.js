@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import FavoriteRooms from '../Components/FavoriteRooms'
+import FavoriteRooms from '../Components/Favorite/FavoriteRooms'
 import Navbar from '../Components/Navbar'
 import './RoomDashboard.css'
 
@@ -46,7 +46,7 @@ class RoomDashboard extends Component {
         fetch(API, reqObj)
         .then(resp => resp.json())
         .then(data => {
-            console.log(data)
+            console.log(data, "DATA")
             return this.props.addFavorite(data)  
         })
 }
@@ -60,32 +60,32 @@ class RoomDashboard extends Component {
         <div>
 <Navbar style={{ position: 'fixed' }} />
 <div>
-    <h1 style={{ margin:'auto',marginTop: "5%", textAlign:'center', fontFamily: "Bublont Shadow", color: 'orange', fontSize: '4em'}}>
-    Welcome to the Neighborhood  {this.props.login.username}</h1>
-    
+    <h1 style={{ margin:'auto',marginTop: "5%", textAlign:'center', fontFamily: "Bublont Shadow", color: '#72cac8', fontSize: '4em'}}>
+    Welcome to the Neighborhood {this.props.login.username}</h1>
 </div>
 
 <Grid divided="vertically" className="roomDashboard" style={{ height: '105vh' }}>    
     <Grid.Row columns={2}>
   <Grid.Column className="favSide" >
     <div >
+        <h4>Your favorite chats</h4>
         <FavoriteRooms style={{ position: 'fixed' }}  history={this.props.history} />
     </div>
   </Grid.Column>
                 <Grid.Column className="roomSide" >
-                            
+                            <h4>Chatrooms in your area</h4>
                             {
                                 this.state.allRooms.map(room=>{   
                                               
                                 return <div  key={room.id}>
                                     <Grid celled columns={5}>
-                                        <Grid.Row>
+                                        <Grid.Row className="roomName">
                                             <Grid.Column>
-                                                <h3 style={{padding: "5px",margin:'auto',marginTop: "5%", textAlign:'center', fontFamily: "Bublont outline", fontSize: "3em"}} 
+                                                <h3 style={{color: "#72cac8",  padding: "5px",margin:'auto',marginTop: "5%", textAlign:'center', fontFamily: "Bublont outline", fontSize: "3em"}} 
                                                 onClick={()=> {                                          
                                                 this.props.history.push(`/rooms/${room.id}`)
                                                 }}>{room.name}</h3>
-                                                <Rating onClick={()=> this.sendFavorite(room.id)} maxRating={1} defaultRating={1} icon='star' size='large' /> 
+                                                <Button onClick={()=> this.sendFavorite(room.id)} maxRating={1} defaultRating={1} icon='star' size='large' /> 
                                             </Grid.Column>
                                         </Grid.Row>
                                     </Grid>

@@ -1,0 +1,27 @@
+
+
+body{
+    background-color: rgba(233, 233, 233, 0.924);
+}
+
+#MessageBox.ui.segment{
+    height: 500px;
+    overflow: auto;
+    /* max-height: 200px; */
+    width: 50%;
+    display: flex;
+    flex-direction: column-reverse;
+    
+}
+
+#MessageContentBox.column{
+    background-color: rgba(233, 233, 233, 0.924);
+    width: 100%;
+    text-align: justify;
+}
+
+#cardInfo.card{
+    width: 100%;
+    text-align: left;
+    margin-left: 4%;
+}

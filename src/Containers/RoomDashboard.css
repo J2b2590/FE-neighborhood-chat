@@ -1,10 +1,22 @@
 
-.roomSide{
+.roomName{
     background-color: beige;
+    white-space: nowrap;
+    padding: 5px;
+    
+   
 }
 
 .favSide{
     background-color: white;
+    padding: 5px;
+    
+ 
 }
+
+
+
+
+
 
 

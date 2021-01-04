@@ -28,7 +28,7 @@ export default function manageRooms(state = [] , action) {
         //     return action.user.notes
 
         // case "DELETE_NOTE":
-        //     // debugger
+        //     // 
         //     deleteNote = state.filter(note => note.id !== action.noteId)
         //     return deleteNote
 

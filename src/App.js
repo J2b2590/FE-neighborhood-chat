@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Login from "./Components/Login/Login";
 import RoomDashboard from "./Containers/RoomDashboard";
-import Room from "./Components/Room";
+import Room from "./Components/Room/Room";
 import Navbar from './Components/Navbar'
 // import FavoriteRooms from "./Components/FavoriteRooms";
 // import consumer from 'index.'
@@ -72,8 +72,6 @@ class App extends Component {
 
     return (
       <div>
-       
-      
       <Switch>  
         <Route exact path="/" component={Login} />
         <Route exact path="/rooms" component={RoomDashboard} />

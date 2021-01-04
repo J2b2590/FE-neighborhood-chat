@@ -10,8 +10,8 @@ import Logo from './assets/logo.svg';
 class Navbar extends React.Component {
 
     clear(){
-        window.localStorage.removeItem('user');
-        window.localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
         
     }
     
@@ -24,7 +24,7 @@ class Navbar extends React.Component {
         
             <Link onClick={this.props.logOut} to='/'>
                 <Menu.Item>   
-                    <Button onClick={this.clear()} basic black>Sign Out</Button>
+                    <Button onClick={this.clear} basic black>Sign Out</Button>
                 </Menu.Item>
             </Link> 
 

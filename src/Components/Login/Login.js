@@ -41,9 +41,11 @@ class Login extends Component {
           }else{
           this.props.login(user)
           localStorage.setItem("token", user.jwt)
-          }
+          console.log(localStorage)
           this.props.history.push('/rooms')
+          } 
         })
+
         this.setState({
           username: "",
           password: "",
@@ -62,15 +64,14 @@ class Login extends Component {
           
           
           <div id="loginApp">
-            {this.state.error ? <h1 style={{color: "red"}}> {this.state.error} </h1> : null}
             <div >
 
             <Grid id="loginApp"  textAlign='center' style={{ height: '105vh' }} verticalAlign='middle'>
               <Grid.Column style={{ maxWidth: 450 }}>
                 <img className="logo" style={{ maxWidth: 450 }} src={Logo} alt={null} /> 
-                <img className="header"style={{ maxWidth: 450 }} src={MainHeader}  alt={null} />        
+                <img id="header"style={{ maxWidth: 450 }} src={MainHeader}  alt={null} />        
                 <Form size='large' onSubmit={this.handleSubmit}>
-                  <Segment stacked>
+                  <Segment id="newSeg" stacked>
                     <Form.Field 
                       fluid 
                       icon='user' 
@@ -87,9 +88,13 @@ class Login extends Component {
                     >
                       <input type="password" name="password" placeholder="PASSWORD" onChange={(event) => this.handleChange(event)} value={this.state.password}/>  
                     </Form.Field>
+                    <div>
+                      {this.state.error ? <h3 style={{color: "red", margin: "2%"}}> {this.state.error} </h3> : null}
+                    </div>
                     <Button color='teal' fluid size='large'>
                       Login
                     </Button>
+                    {/* <h4 id="subText">Chat with locals and get the inside scoop! </h4> */}
                   </Segment>
                 </Form>
               </Grid.Column>

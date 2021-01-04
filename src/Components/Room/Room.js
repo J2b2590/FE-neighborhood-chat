@@ -1,9 +1,10 @@
 import React, { Component,} from "react";
-import RoomSocket from "./RoomSocket";
+import RoomSocket from "../RoomSocket";
 import { connect } from "react-redux";
-import Navbar from './Navbar'
-import { login } from "../actions/login";
-import { allRooms, currentRoom, currentUserInRoom } from "../actions/room";
+import Navbar from '../Navbar'
+import "./Room.css"
+import { login } from "../../actions/login";
+import { allRooms, currentRoom, currentUserInRoom } from "../../actions/room";
 import { Button, Card, Form, Grid, Segment } from "semantic-ui-react";
 
 
@@ -52,7 +53,7 @@ class Room extends Component {
         console.log("renderMessage:", message)
       return (
         <p key={index}>
-          <a class="ui blue ribbon label">{message.user.username}</a>
+          <a className="ui blue ribbon label">{message.user.username}</a>
            : {message.message.content}
         </p>
       );
@@ -65,23 +66,22 @@ class Room extends Component {
     return (
       <div>
         <Navbar />
-        <h1 style={{margin: "5%",textAlign: "center", fontFamily: "Bublont Shadow", color: 'orange', fontSize: '4em'}}>
+        <h1 style={{margin: "3%",textAlign: "center", fontFamily: "Bublont Shadow", color: 'orange', fontSize: '4em'}}>
           Welcome to {this.props.roomData.name} Chatroom</h1>
           
         <div>
             <Button onClick={()=> this.props.history.push('/rooms')}>BACK</Button>
         </div>
 
-        
-      
-        <Grid centered style={{verticalAlign:"bottom", margin: "3%", border: "red" }}>
-          <Segment style={{ overflow: "auto", maxHeight: 200 }}>
-            <Grid.Column>
+        <Grid  centered style={{verticalAlign:"bottom", border: "red" }}>
+        {/* <Card.Header>Whats fun to do</Card.Header> */}
+          <Segment id="MessageBox" >
+            <Grid.Column >
               <Card.Group>
-                <Card>
-                  <Card.Content>
-                    <Card.Header>Whats fun to do</Card.Header>
-                    <Card.Description>
+                <Card id="cardInfo">
+                  <Card.Content id="MessageContentBox"  >
+                    
+                    {/* <Card.Description> */}
                         
                       <strong>
                         {this.props.messages
@@ -89,15 +89,19 @@ class Room extends Component {
                           : null}
                       </strong>
 
-                    </Card.Description>
+                    {/* </Card.Description> */}
                   </Card.Content>
                 </Card>
               </Card.Group>
             </Grid.Column>
           </Segment>
         </Grid>
+
+        {/* <Form> using this instead of the form below!!
+          <TextArea placeholder='Tell us more' />
+        </Form> */}
         
-        <div centered style={{ margin: "5%", textAlign: "center" }}>
+        <div centered style={{ margin: "2%", textAlign: "center" }}>
           <form id="chat-form" onSubmit={this.submitMessage}>
             <h3>Post a new message:</h3>
             <textarea
@@ -109,6 +113,7 @@ class Room extends Component {
             <input type="submit"></input>  
           </form>
         </div>
+        
           
           
         <RoomSocket
