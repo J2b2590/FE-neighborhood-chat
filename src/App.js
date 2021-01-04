@@ -41,12 +41,7 @@ class App extends Component {
     }
   }
 
-  clear(){
-    window.localStorage.removeItem('user');
-    window.localStorage.removeItem('token');
-    this.logOut();
-}
-
+  
   getRoomData = (id) => {
     fetch(`http://localhost:3000/rooms/${id}`)
       .then((resp) => resp.json())
@@ -77,8 +72,8 @@ class App extends Component {
 
     return (
       <div>
-        
-      <Navbar clear={this.clear} />
+       
+      
       <Switch>  
         <Route exact path="/" component={Login} />
         <Route exact path="/rooms" component={RoomDashboard} />

@@ -1,6 +1,7 @@
 import React, { Component,} from "react";
 import RoomSocket from "./RoomSocket";
 import { connect } from "react-redux";
+import Navbar from './Navbar'
 import { login } from "../actions/login";
 import { allRooms, currentRoom, currentUserInRoom } from "../actions/room";
 import { Button, Card, Form, Grid, Segment } from "semantic-ui-react";
@@ -63,7 +64,7 @@ class Room extends Component {
     
     return (
       <div>
-        
+        <Navbar />
         <h1 style={{margin: "5%",textAlign: "center", fontFamily: "Bublont Shadow", color: 'orange', fontSize: '7em'}}>
           Welcome to {this.props.roomData.name} Chatroom</h1>
           

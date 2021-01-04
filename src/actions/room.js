@@ -34,3 +34,10 @@ export const addFavorite = favoriteRoom => {
     }
 }
 
+export const deleteFavorite = id =>{
+    return{
+        type: "DELETE_FAVORITE",
+        id
+    }
+}
+

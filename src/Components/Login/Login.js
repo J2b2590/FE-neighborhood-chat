@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import "./Login.css"
 import { login } from '../../actions/login'
 import { connect } from 'react-redux';
+
 import MainHeader from '../assets/header.svg';
 import Logo from '../assets/logo.svg';
 
@@ -33,9 +34,10 @@ class Login extends Component {
           console.log(user, "login User")
 
           if(user.error){
+            
             this.setState({ 
               error: user.error  });
-
+              
           }else{
           this.props.login(user)
           localStorage.setItem("token", user.jwt)
@@ -63,7 +65,7 @@ class Login extends Component {
             {this.state.error ? <h1 style={{color: "red"}}> {this.state.error} </h1> : null}
             <div >
 
-            <Grid id="loginApp"  textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+            <Grid id="loginApp"  textAlign='center' style={{ height: '105vh' }} verticalAlign='middle'>
               <Grid.Column style={{ maxWidth: 450 }}>
                 <img className="logo" style={{ maxWidth: 450 }} src={Logo} alt={null} /> 
                 <img className="header"style={{ maxWidth: 450 }} src={MainHeader}  alt={null} />        
