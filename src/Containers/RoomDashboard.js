@@ -60,7 +60,9 @@ class RoomDashboard extends Component {
         <div>
 <Navbar style={{ position: 'fixed' }} />
 <div>
-    <h4>Choose from a list of local Chicago Neighborhoods to chat in </h4>
+    <h1 style={{ margin:'auto',marginTop: "5%", textAlign:'center', fontFamily: "Bublont Shadow", color: 'orange', fontSize: '4em'}}>
+    Welcome to the Neighborhood  {this.props.login.username}</h1>
+    
 </div>
 
 <Grid divided="vertically" className="roomDashboard" style={{ height: '105vh' }}>    
@@ -71,8 +73,7 @@ class RoomDashboard extends Component {
     </div>
   </Grid.Column>
                 <Grid.Column className="roomSide" >
-                            <h1 style={{ margin:'auto',marginTop: "10%", textAlign:'center', fontFamily: "Bublont Shadow", color: 'orange', fontSize: '3em'}}>
-                                Welcome to the Neighborhood {this.props.login.username}</h1>
+                            
                             {
                                 this.state.allRooms.map(room=>{   
                                               

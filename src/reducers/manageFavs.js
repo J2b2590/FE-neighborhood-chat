@@ -11,6 +11,7 @@ export default function manageFavs(state = [] , action) {
 
         case "DELETE_FAVORITE":
             console.log("delete fav")
+            
             newFavs = [...state.filter(t => t.id !== action.id)]
             return newFavs
 

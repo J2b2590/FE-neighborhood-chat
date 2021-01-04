@@ -17,27 +17,20 @@ class FavoriteRooms extends Component {
          }
     }
 
-    componentDidMount(){
+    componentDidUpdate(){
         fetch(`http://localhost:3000/favorites`)
                 .then(resp => resp.json())
                 .then(resp => {
-                    // this.props.favs.map(fav => {
-                    //     console.log(fav, "map through favs")
-                    //     if(resp.rooms.id === fav.id)
-                    //     return console.log(true)
-                    // })
-                //   console.log(resp.user.username, "FAVORITES ROOM")
-                
+                  console.log(resp, "FAVORITES ROOM")
                 })
     }
 
-    deleteFavorite(id){
-        fetch(`http://localhost:3000/favorites${id}`, {method: 'DELETE'})
+    removeFav = (id) => {
+        fetch(`http://localhost:3000/favorites/${id}`, {method: 'DELETE'})
                 .then(resp => resp.json())
                 .then(resp => {
                     this.props.deleteFavorite(resp)
-                    console.log(resp,"DELETe fav")
-                
+                    console.log(resp,"DELETe fav") 
                 })
     }
     
@@ -49,7 +42,6 @@ class FavoriteRooms extends Component {
             <div style={{backgroundColor: "light blue"}}>
                     <h1>Your Favorite Rooms</h1>
                 {
-                    
                     this.props.favs.map(fav => {
                     return<div key={fav.id}>
                         <Grid celled columns={5}>
@@ -60,7 +52,7 @@ class FavoriteRooms extends Component {
                                                     this.props.history.push(`/rooms/${fav.id}`)
                                                     }}
                                                 >{fav.name}</h3>
-                                                <h4 onClick={()=>this.deleteFavorite(`${fav.id}`)}> remove </h4>
+                                                <h4 onClick={()=>this.removeFav(`${fav.id}`)}> remove </h4>
                                             </Grid.Column>
                                         </Grid.Row>
                                     </Grid> 

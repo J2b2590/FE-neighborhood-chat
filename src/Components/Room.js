@@ -65,7 +65,7 @@ class Room extends Component {
     return (
       <div>
         <Navbar />
-        <h1 style={{margin: "5%",textAlign: "center", fontFamily: "Bublont Shadow", color: 'orange', fontSize: '7em'}}>
+        <h1 style={{margin: "5%",textAlign: "center", fontFamily: "Bublont Shadow", color: 'orange', fontSize: '4em'}}>
           Welcome to {this.props.roomData.name} Chatroom</h1>
           
         <div>
