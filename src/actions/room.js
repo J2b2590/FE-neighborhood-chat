@@ -39,11 +39,11 @@ export const deleteFavorite = id =>{
     return{
         
         type: "DELETE_FAVORITE",
-        id: id.room.id
+        id
     }
 }
 
-export const updateFavortes = updateFavorites =>{
+export const updateFavorite = updateFavorites =>{
     return{
 
         type: "UPDATE_FAVORITE",

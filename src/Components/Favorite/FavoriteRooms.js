@@ -5,45 +5,34 @@ import "./Favorite.css"
 import { deleteFavorite } from '../../actions/room'
 
 
-
-
-
-
 class FavoriteRooms extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLogged: false, 
-            favorite: this.props.user.favorite_rooms,
-            hidden: false
+            isLogged: false
          }
     }
 
-    componentDidUpdate(prevProps){
-        fetch(`http://localhost:3000/favorites`)
-                .then(resp => resp.json())
-                .then(resp => {
-                  console.log(resp, "favorites")
-                })
-                if (prevProps.user.favorite_rooms !== this.state.favorite){
-                    this.setState({ 
-                        favorite: this.props.user.favorite_rooms });
-                }
-            }
+    // componentDidUpdate(){
+    //     fetch(`http://localhost:3000/favorites`)
+    //             .then(resp => resp.json())
+    //             .then(resp => {
+    //               console.log(resp, "favorites")
+    //             }) 
+    //         }
             
 
     removeFav = (id) => {
         console.log(id,"removeFav")
-        const token = localStorage.getItem("token")
+        
         fetch(`http://localhost:3000/favorites/${id}`, {
             method: 'DELETE', 
-            headers: {
-                Authorization: `Bearer ${token}`
-              }
+            
             })
             .then(resp => resp.json())
             .then(resp =>{
                 console.log(resp)
+                this.props.deleteFavorite(id)
             }) 
         }
     
@@ -53,8 +42,9 @@ isLoggedIn = () => {
     
     return  <div>            
     {
-        this.props.user.favorite_rooms.map(fav => {
-            debugger
+        this.props.user.favorites ?
+        this.props.user.favorites.map(fav => {
+            
         return <div key={fav.id} >
             <Grid celled columns={5}>
                             <Grid.Row  style={{whiteSpace: "nowrap", backgroundColor: "#72cac8"}}>
@@ -63,17 +53,19 @@ isLoggedIn = () => {
                                     onClick={()=> {                                          
                                         this.props.history.push(`/rooms/${fav.id}`)
                                         }}
-                                    >{fav.name}</h3>
+                                    >{fav.room.name}</h3>
                                     
-                                    <Button onClick={()=>this.removeFav(`${fav.id}`)} icon='x' size='large' /> 
+                                    <Button onClick={()=>this.removeFav(fav.id)} icon='x' size='large' /> 
 
                                 </Grid.Column>
                             </Grid.Row>
                         </Grid>           
             </div>
+
         })
-    }  
+        : null }  
 </div>
+
 }
           
     render() { 

@@ -47,7 +47,7 @@ class RoomDashboard extends Component {
         .then(resp => resp.json())
         .then(data => {
             console.log(data, "DATA")
-            return this.props.addFavorite(data)  
+            this.props.addFavorite(data)  
         })
 }
 
