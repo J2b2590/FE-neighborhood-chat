@@ -1,11 +1,9 @@
 
 
-body{
-    background-color: rgba(233, 233, 233, 0.924);
-}
+
 
 #MessageBox.ui.segment{
-    height: 500px;
+    height: 450px;
     overflow: auto;
     /* max-height: 200px; */
     width: 50%;
@@ -15,7 +13,7 @@ body{
 }
 
 #MessageContentBox.column{
-    background-color: rgba(233, 233, 233, 0.924);
+    background-color: rgba(248, 231, 194, 0.842);
     width: 100%;
     text-align: justify;
 }
@@ -24,4 +22,17 @@ body{
     width: 100%;
     text-align: left;
     margin-left: 4%;
+    background-color: rgba(248, 231, 194, 0.842);
+}
+
+#textForm{
+  padding: 20px;
+  width: 50%;
+  text-align: center;
+  margin: auto;
+}
+
+#subButton{
+    padding: 5px 5px;
+    margin-top: 2%;
 }

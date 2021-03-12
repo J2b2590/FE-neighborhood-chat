@@ -1,60 +1,79 @@
-#loginApp{
-
-    background-color:  rgba(233, 233, 233, 0.924)
-    
-    
+#loginApp {
+  background-color: rgba(233, 233, 233, 0.924);
 }
-#subText{
-  color: "#72cac8";  
+#subText {
+  color: "#72cac8";
   padding: "5px";
-  font-family: "Bublont outline";
-  text-align:'center';
+  font-family: "Bublont filled";
+  text-align: "center";
   font-size: "12px";
-  
+}
+#cityName {
+  display: inline;
+  font-family: "bublont filled";
+  color: #72cac8;
+  font-size: 2em;
+  animation-duration: 2s;
+  animation-name: slidein;
 }
 
-.logo{
-    animation-duration: 2s;
-    animation-name: slideinleft;
+.logo {
+  animation-duration: 2s;
+  animation-name: slideinleft;
 }
 
-#header{
-    animation-duration: 3s;
-    animation-name: slideinright;
+#header {
+  animation-duration: 2s;
+  animation-name: slideinright;
 }
 
 @keyframes slideinright {
-    from {
-      margin-left: -100%;
-      width: 300%;
-    }
-  
-    to {
-      margin-right: 0%;
-      width: 100%;
-    }
+  25% {
+    margin-left: -100%;
+    width: 300%;
   }
 
+  50% {
+    background-color: green;
+    width: 100%;
+  }
+
+  75% {
+    margin-right: 0%;
+    width: 100%;
+  }
+}
 
 @keyframes slideinleft {
-    from {
-      margin-left: 100%;
-      width: 300%;
-    }
-  
-    to {
-      margin-left: 0%;
-      width: 100%;
-    }
+  from {
+    margin-left: 100%;
+    width: 300%;
   }
 
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 100%;
+  }
+
+  to {
+    margin-right: 0%;
+    width: 10%;
+  }
+}
 
 #newSeg.ui.segment {
-    position: relative;
-    background: rgba(233, 233, 233, 0.924);
-    box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
-    margin: 1rem 0;
-    padding: 1em 1em;
-    border-radius: .28571429rem;
-    border: 1px solid rgba(34,36,38,.15);
+  position: relative;
+  background: rgba(233, 233, 233, 0.924);
+  box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 0.15);
+  margin: 1rem 0;
+  padding: 1em 1em;
+  border-radius: 0.28571429rem;
+  border: 1px solid rgba(34, 36, 38, 0.15);
 }

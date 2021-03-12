@@ -1,18 +1,32 @@
 
 .roomName{
-    background-color: beige;
+    background-color: rgba(226, 226, 225, 0.671);
     white-space: nowrap;
     padding: 5px;
+    text-align: center;
     
    
 }
 
-.favSide{
-    background-color: white;
+.favSide{   
     padding: 5px;
-    
- 
 }
+
+.ui.celled.grid{
+    width: 75%;
+    text-align: center;
+} 
+
+#favHeader, #localHeader{
+    text-align: center;
+    font-family: "Bublont filled";
+    font-size: 2em;
+}
+.favText{
+    text-align: center;
+} 
+
+
 
 
 
