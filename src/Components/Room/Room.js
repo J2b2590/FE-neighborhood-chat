@@ -36,7 +36,7 @@ class Room extends Component {
       newMessage: "",
     });
 
-    fetch(API, {
+    fetch(`/resources`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

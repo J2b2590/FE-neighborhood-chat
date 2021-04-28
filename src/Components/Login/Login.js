@@ -29,7 +29,7 @@ class Login extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:3000/users`, {
+    fetch(`/resources`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

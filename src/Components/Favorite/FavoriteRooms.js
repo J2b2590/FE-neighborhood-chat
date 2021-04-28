@@ -15,7 +15,7 @@ class FavoriteRooms extends Component {
   removeFav = (id) => {
     console.log(id, "removeFav");
 
-    fetch(`http://localhost:3000/favorites/${id}`, {
+    fetch(`/resources/${id}`, {
       method: "DELETE",
     })
       .then((resp) => resp.json())
