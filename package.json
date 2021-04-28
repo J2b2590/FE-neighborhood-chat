@@ -26,7 +26,6 @@
     "postinstall": "npm build && npm deploy && echo 'Client built!'"
   },
   "engines": {
-    "yarn": "1.22.5",
     "npm": "6.14.8",
     "node": "14.10.1"
   },
