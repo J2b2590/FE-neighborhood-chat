@@ -12,6 +12,8 @@ import rootReducer from "./reducers";
 // import createConsumer from '@rails/actioncable'
 import actionCable from "actioncable";
 
+import API from "./Api";
+
 let store = createStore(
   rootReducer,
   { user: { username: "" } },
@@ -20,11 +22,9 @@ let store = createStore(
 
 const CableApp = {};
 
-CableApp.cable = actionCable.createConsumer(
-  "http://neighbor-chat-be.herokuapp.com/cable"
-);
+CableApp.cable = actionCable.createConsumer(`ws://${API}/cable`);
 
-console.log({ CableApp });
+// console.log({CableApp})
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
