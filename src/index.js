@@ -23,7 +23,7 @@ let store = createStore(
 const CableApp = {};
 
 CableApp.cable = actionCable.createConsumer(
-  `ws://neighbor-chat-be.herokuapp.com/cable`
+  `wss://neighbor-chat-be.herokuapp.com/cable`
 );
 
 // console.log({CableApp})
