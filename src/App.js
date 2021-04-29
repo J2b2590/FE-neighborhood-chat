@@ -39,7 +39,7 @@ class App extends Component {
   }
 
   getRoomData = (id) => {
-    fetch(`/resources/${id}`)
+    fetch(`http://localhost:3000/rooms/${id}`)
       .then((resp) => resp.json())
       .then((data) => {
         this.setState({

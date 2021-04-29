@@ -18,7 +18,7 @@ import {
 
 const RatingExampleRating = () => <Rating />;
 
-const API = "/resources";
+const API = "http://localhost:3000//favorites";
 
 class RoomDashboard extends Component {
   constructor(props) {

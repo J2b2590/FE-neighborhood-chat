@@ -1,5 +1,5 @@
 {
-  "name": "package-setup-for-hosting",
+  "name": "fe-chatroom",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -20,6 +20,7 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
+    "start": "PORT=3001 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -44,10 +45,5 @@
   },
   "devDependencies": {
     "prettier": "2.2.1"
-  },
-  "description": "see-name",
-  "main": "index.js",
-  "repository": "git@github.com:J2b2590/FE-neighborhood-chat.git",
-  "author": "J2b2590 <J2b2590@gmail.com>",
-  "license": "MIT"
+  }
 }
