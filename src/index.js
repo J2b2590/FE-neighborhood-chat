@@ -12,7 +12,7 @@ import rootReducer from "./reducers";
 // import createConsumer from '@rails/actioncable'
 import actionCable from "actioncable";
 
-import API from "./Api";
+// import API from "./Api";
 
 let store = createStore(
   rootReducer,
@@ -22,7 +22,9 @@ let store = createStore(
 
 const CableApp = {};
 
-CableApp.cable = actionCable.createConsumer(`ws://${API}/cable`);
+CableApp.cable = actionCable.createConsumer(
+  `ws://neighbor-chat-be.herokuapp.com/cable`
+);
 
 // console.log({CableApp})
 ReactDOM.render(
