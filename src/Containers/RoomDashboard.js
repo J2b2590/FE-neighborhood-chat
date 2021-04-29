@@ -4,6 +4,8 @@ import FavoriteRooms from "../Components/Favorite/FavoriteRooms";
 import Navbar from "../Components/Navbar/Navbar";
 import "./RoomDashboard.css";
 
+import API from "../Api";
+
 import { popRooms, addFavorite, checkLogin } from "../actions/room";
 import {
   Header,
@@ -18,7 +20,7 @@ import {
 
 const RatingExampleRating = () => <Rating />;
 
-const API = "http://localhost:3000//favorites";
+// const API = "http://localhost:3000//favorites";
 
 class RoomDashboard extends Component {
   constructor(props) {
@@ -29,7 +31,7 @@ class RoomDashboard extends Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3000/rooms`)
+    fetch(`${API}/rooms`)
       .then((resp) => resp.json())
       .then((resp) => {
         this.setState({

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { FeedDate, Grid, Rating, Room, Button } from "semantic-ui-react";
 import "./Favorite.css";
 import { deleteFavorite } from "../../actions/room";
+import API from "../../Api";
 
 class FavoriteRooms extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class FavoriteRooms extends Component {
   removeFav = (id) => {
     console.log(id, "removeFav");
 
-    fetch(`http://localhost:3000/favorites/${id}`, {
+    fetch(`${API}/${id}`, {
       method: "DELETE",
     })
       .then((resp) => resp.json())

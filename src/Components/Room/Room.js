@@ -7,7 +7,9 @@ import { login } from "../../actions/login";
 import { allRooms, currentRoom, currentUserInRoom } from "../../actions/room";
 import { Button, Card, Form, Grid, Segment, TextArea } from "semantic-ui-react";
 
-const API = "http://localhost:3000/messages";
+import API from "../../Api";
+
+// const API = "${API}/messages";
 
 class Room extends Component {
   constructor(props) {
@@ -36,7 +38,7 @@ class Room extends Component {
       newMessage: "",
     });
 
-    fetch(API, {
+    fetch(`${API}/messages`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

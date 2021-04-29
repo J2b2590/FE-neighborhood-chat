@@ -6,6 +6,8 @@ import { connect } from "react-redux";
 import MainHeader from "../assets/header.svg";
 import Logo from "../assets/logo.svg";
 
+import API from "../../Api";
+
 import {
   Card,
   Form,
@@ -29,7 +31,7 @@ class Login extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:3000/users`, {
+    fetch(`${API}/users`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

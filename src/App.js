@@ -12,6 +12,8 @@ import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import UserProfile from "./Components/UserProfile";
 
+import API from "./Api";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +27,7 @@ class App extends Component {
   componentDidMount() {
     const token = localStorage.getItem("token");
     if (token) {
-      fetch(`http://localhost:3000/auto_login`, {
+      fetch(`${API}/auto_login`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -39,7 +41,7 @@ class App extends Component {
   }
 
   getRoomData = (id) => {
-    fetch(`http://localhost:3000/rooms/${id}`)
+    fetch(`${API}/rooms/${id}`)
       .then((resp) => resp.json())
       .then((data) => {
         this.setState({
