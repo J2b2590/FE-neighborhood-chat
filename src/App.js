@@ -12,7 +12,7 @@ import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import UserProfile from "./Components/UserProfile";
 
-import API from "./Api";
+import API from "../../Api";
 
 class App extends Component {
   constructor(props) {
